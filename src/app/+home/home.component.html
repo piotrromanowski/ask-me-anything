@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="page-header">
+        <h1>Welcome to my Q&A page! 
+            <button type="button" class="btn btn-primary ask" (click)="toggle()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                New Question
+            </button>
+        </h1>
+        <h3><small>This page was made primarily to give me something to build using Angular2 and firebase, but may eventually be moved to
+            my <a href="http://piotr.codes">website.</a></small></h3>
+    </div>
+
+    <div [hidden]="showSuccess" class="alert alert-success">Question Submitted!</div>
+    <div [hidden]="showError" class="alert alert-danger">Something went wrong :/</div>
+
+    <div [hidden]="hidden">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form [ngFormModel]="form">                    
+                    <div
+                        [class.has-error]="form.controls.newQuestion.touched && !form.valid" 
+                        class="form-group">
+                        <label for="exampleInputEmail1">Question</label>
+                        <textarea
+                            ngControl="newQuestion"
+                            id="newQuestion"                            
+                            class="form-control" 
+                            rows="3">
+                        </textarea>
+                        <div 
+                            *ngIf="form.controls.newQuestion.touched && !form.valid"
+                            class="alert alert-danger"
+                        >
+                            Question must be at least 10 characters in length.
+                        </div>
+                        <button 
+                            [disabled]="!form.valid" 
+                            class="question-button btn btn-primary" 
+                            type="submit"
+                            (click)="submitQuestion()">
+                                Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div *ngFor="let question of questions$ | async" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ question.question }}</h3>
+        </div>
+        <div *ngIf="question.answer" class="panel-body">
+            {{ question.answer }}
+        </div>
+    </div>
+</div>
