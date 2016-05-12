@@ -1,0 +1,16 @@
+img {
+    width: 15%;
+}
+
+.nav-brand {
+    display: inline;
+    width: 200px;
+}
+
+.nav-brand img {
+    display: inline;
+}
+
+p {
+    display: inline;
+}
