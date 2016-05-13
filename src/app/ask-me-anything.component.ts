@@ -21,6 +21,6 @@ export class AskMeAnythingAppComponent {
   }
   
   isActive(route) {
-    return location.pathname === route;
+    return location.pathname.endsWith(route);
   }  
 }
