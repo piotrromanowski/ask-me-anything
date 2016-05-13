@@ -8,7 +8,7 @@ export class QuestionService {
    
     postQuestion(question: String) {                
         return this._http.post(
-            "http://piotr.codes/submit-question",
+            "https://piotr.codes/submit-question",
             JSON.stringify({question})
         );
     }
